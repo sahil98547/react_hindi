@@ -1,4 +1,4 @@
-import Chai from "./Chai.jsx";
+import Chai from "./Chai.jsx"
 
 function App() {
   return (
