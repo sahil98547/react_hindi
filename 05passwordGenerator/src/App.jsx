@@ -1,15 +1,19 @@
-import { useCallback, useEffect, useState, useRef} from 'react';
+import { useCallback, useEffect, useState, useRef } from 'react';
 
 function App() {
+  // useState hook to manage the length of the password
   const [length, setLength] = useState(8);
+  // useState hook to manage if numbers are allowed in the password
   const [numberAllowed, setNumberAllowed] = useState(false);
+  // useState hook to manage if special characters are allowed in the password
   const [charAllowed, setCharAllowed] = useState(false);
+  // useState hook to manage the generated password
   const [password, setPassword] = useState(""); 
 
-  //useRef hook
+  // useRef hook to get a reference to the password input field
   const passwordRef = useRef(null);
 
-  //usecallback is used to optimized the code.
+  // useCallback hook to memoize the password generator function to avoid unnecessary re-creations
   const passwordGenerator = useCallback(() => {
     let pass = "";
     let str = "ABCDEFGHIJKLMNOPQRSTUVWXYXabcdefghijklmnopqrstuvwxy";
@@ -23,20 +27,19 @@ function App() {
     }
 
     setPassword(pass);
-
   }, [length, numberAllowed, charAllowed, setPassword]);
 
-  const copyPasswordToClipboard = useCallback(()=>{
+  // useCallback hook to memoize the copy to clipboard function
+  const copyPasswordToClipboard = useCallback(() => {
     passwordRef.current?.select();
     passwordRef.current?.setSelectionRange(0, 40);
-    window.navigator.clipboard.writeText(password)
-  }, [password])
+    window.navigator.clipboard.writeText(password);
+  }, [password]);
 
-  //Use Effect will run if any changes will happen in the dependencies.
-  useEffect(()=>{
-   passwordGenerator();
-  }, [length, numberAllowed, charAllowed, passwordGenerator])
-
+  // useEffect hook to run the password generator when dependencies change
+  useEffect(() => {
+    passwordGenerator();
+  }, [length, numberAllowed, charAllowed, passwordGenerator]);
 
   return (
     <>
@@ -60,15 +63,15 @@ function App() {
               min={6}
               max={30}
               value={length}
-              className='custor-pointer'
-              onChange={(e) => { setLength(e.target.value) }}
+              className='cursor-pointer'
+              onChange={(e) => { setLength(parseInt(e.target.value)) }}
             />
             <label>Length : {length}</label>
           </div>
           <div className='flex items-center gap-x-1'>
             <input
               type="checkbox"
-              defaultChecked={numberAllowed}
+              checked={numberAllowed}
               id='numberInput'
               onChange={() => {
                 setNumberAllowed((prev) => !prev);
@@ -80,7 +83,7 @@ function App() {
           <div className='flex items-center gap-x-1'>
             <input
               type="checkbox"
-              defaultChecked={charAllowed}
+              checked={charAllowed}
               id='characterInput'
               onChange={() => {
                 setCharAllowed((prev) => !prev);
@@ -91,7 +94,7 @@ function App() {
         </div>
       </div>
     </>
-  )
+  );
 }
 
 export default App;
