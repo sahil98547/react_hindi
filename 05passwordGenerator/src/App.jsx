@@ -3,10 +3,13 @@ import { useCallback, useEffect, useState, useRef } from 'react';
 function App() {
   // useState hook to manage the length of the password
   const [length, setLength] = useState(8);
+
   // useState hook to manage if numbers are allowed in the password
   const [numberAllowed, setNumberAllowed] = useState(false);
+  
   // useState hook to manage if special characters are allowed in the password
   const [charAllowed, setCharAllowed] = useState(false);
+  
   // useState hook to manage the generated password
   const [password, setPassword] = useState(""); 
 
