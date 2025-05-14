@@ -1,6 +1,4 @@
 import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
 import './App.css'
 
 function App() {
@@ -29,10 +27,10 @@ function App() {
       <button onClick={addValue}>Add value</button>
       <br />
       <br />
-      <button onClick={subValue}>sub value</button>
+      <button onClick={subValue}>Sub value</button>
       <p>footer : {counter}</p>
     </>
   )
 }
 
-export default App
+export default App;

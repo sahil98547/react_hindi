@@ -23,4 +23,4 @@ function Card({username, btnText="visit me"}) {
   )
 }
 
-export default Card
+export default Card;
