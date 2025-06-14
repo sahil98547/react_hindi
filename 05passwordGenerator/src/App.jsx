@@ -6,18 +6,18 @@ function App() {
 
   // useState hook to manage if numbers are allowed in the password
   const [numberAllowed, setNumberAllowed] = useState(false);
-  
+
   // useState hook to manage if special characters are allowed in the password
   const [charAllowed, setCharAllowed] = useState(false);
-  
+
   // useState hook to manage the generated password
-  const [password, setPassword] = useState(""); 
+  const [password, setPassword] = useState("");
 
   // useRef hook to get a reference to the password input field
   const passwordRef = useRef(null);
 
   // useCallback hook to memoize the password generator function to avoid unnecessary re-creations
-  const passwordGenerator = useCallback(() => {
+  const passwordGenerator = useCallback(() => { 
     let pass = "";
     let str = "ABCDEFGHIJKLMNOPQRSTUVWXYXabcdefghijklmnopqrstuvwxy";
 
@@ -31,6 +31,7 @@ function App() {
 
     setPassword(pass);
   }, [length, numberAllowed, charAllowed, setPassword]);
+
 
   // useCallback hook to memoize the copy to clipboard function
   const copyPasswordToClipboard = useCallback(() => {
@@ -64,7 +65,7 @@ function App() {
             <input
               type="range"
               min={6}
-              max={30}
+              max={35}
               value={length}
               className='cursor-pointer'
               onChange={(e) => { setLength(parseInt(e.target.value)) }}
